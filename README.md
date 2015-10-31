@@ -24,6 +24,9 @@ optional arguments:
                         Sampling rate. Default value: 44100.
 ```
 
+```
+python spectrology.py test.bmp -b 13000 -t 19000
+```
 ![spectrogram](https://solusipse.net/blog/img/posts/audio-samples/7.png)
 
 For more informations on this techique, see this article: https://solusipse.net/blog/post/basic-methods-of-audio-steganography-spectrograms/.
