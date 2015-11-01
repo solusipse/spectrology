@@ -59,7 +59,6 @@ def convert(inpt, output, minfreq, maxfreq, pxs, wavrate):
 
     for x in range(img.size[0]):
         row = []
-        pos = 0
         for y in range(img.size[1]):
             yinv = img.size[1] - y - 1
             amp = color( img.getpixel((x,y)) )
@@ -70,7 +69,7 @@ def convert(inpt, output, minfreq, maxfreq, pxs, wavrate):
             for j in row:
                 try:
                     data[i + x * fpx] += j[i]
-                except:
+                except(IndexError):
                     data.insert(i + x * fpx, j[i])
 
         sys.stdout.write("Conversion progress: %d%%   \r" % (float(x) / img.size[0]*100) )
@@ -89,11 +88,11 @@ def color(rgb):
 
 def genwave(frequency, amplitude, samples, samplerate):
     cycles = samples * frequency / samplerate
-    audioArray = []
+    a = []
     for i in range(samples):
         x = math.sin(float(cycles) * 2 * math.pi * i / float(samples)) * float(amplitude)
-        audioArray.append(int(math.floor(x)))
-    return audioArray
+        a.append(int(math.floor(x)))
+    return a
 
 if __name__ == '__main__':
     inpt = parser()
