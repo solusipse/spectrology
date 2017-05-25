@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 '''
 Spectrology
 This script is able to encode an image into audio file whose spectrogram represents input image.
