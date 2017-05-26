@@ -73,6 +73,11 @@ def convert(inpt, output, minfreq, maxfreq, pxs, wavrate):
                     data[i + x * fpx] += j[i]
                 except(IndexError):
                     data.insert(i + x * fpx, j[i])
+                except(OverflowError):
+                    if j[i] > 0:
+                      data[i + x * fpx] = 32767
+                    else:
+                      data[i + x * fpx] = -32768
 
         sys.stdout.write("Conversion progress: %d%%   \r" % (float(x) / img.size[0]*100) )
         sys.stdout.flush()
