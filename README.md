@@ -4,7 +4,7 @@ Images to audio files with corresponding spectrograms encoder.
 ## Usage
 
 ```
-usage: spectrology.py [-h] [-o OUTPUT] [-b BOTTOM] [-t TOP] [-p PIXELS]
+usage: spectrology.py [-h] [-r] [-o OUTPUT] [-b BOTTOM] [-t TOP] [-p PIXELS]
                       [-s SAMPLING]
                       INPUT
 
@@ -13,6 +13,7 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
+  -r, --rotate          Rotate image 90 degrees.
   -o OUTPUT, --output OUTPUT
                         Name of the output wav file. Default value: out.wav).
   -b BOTTOM, --bottom BOTTOM
