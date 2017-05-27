@@ -51,7 +51,7 @@ def parser():
     return (args.INPUT, output, minfreq, maxfreq, pxs, wavrate, rotate)
 
 def convert(inpt, output, minfreq, maxfreq, pxs, wavrate, rotate):
-    img = Image.open(inpt).convert('RGB')
+    img = Image.open(inpt).convert('L')
     if rotate:
       img = img.rotate(90)
 
@@ -70,7 +70,7 @@ def convert(inpt, output, minfreq, maxfreq, pxs, wavrate, rotate):
         row = []
         for y in range(img.size[1]):
             yinv = img.size[1] - y - 1
-            amp = color( img.getpixel((x,y)) )
+            amp = img.getpixel((x,y))
             if (amp > 0):
                 row.append( genwave(yinv * interval + minfreq, amp, fpx, wavrate) )
 
@@ -96,9 +96,6 @@ def convert(inpt, output, minfreq, maxfreq, pxs, wavrate, rotate):
 
     print("Conversion progress: 100%")
     print("Success. Completed in %d seconds." % int(tms-tm))
-
-def color(rgb):
-    return (rgb[0] + rgb[1] + rgb[2])/3
 
 def genwave(frequency, amplitude, samples, samplerate):
     cycles = samples * frequency / samplerate
