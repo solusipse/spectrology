@@ -8,13 +8,14 @@ License: MIT
 Website: https://github.com/solusipse/spectrology
 '''
 
-from PIL import Image
+from PIL import Image, ImageOps
 import wave, math, array, argparse, sys, timeit
 
 def parser():
     parser = argparse.ArgumentParser()
     parser.add_argument("INPUT", help="Name of the image to be convected.")
-    parser.add_argument("-r", "--rotate", help="Rotate image 90 degrees.", action='store_true')
+    parser.add_argument("-r", "--rotate", help="Rotate image 90 degrees for waterfall spectrographs.", action='store_true')
+    parser.add_argument("-i", "--invert", help="Invert image colors.", action='store_true')
     parser.add_argument("-o", "--output", help="Name of the output wav file. Default value: out.wav).")
     parser.add_argument("-b", "--bottom", help="Bottom frequency range. Default value: 200.", type=int)
     parser.add_argument("-t", "--top", help="Top frequency range. Default value: 20000.", type=int)
@@ -28,6 +29,7 @@ def parser():
     pxs     = 30
     output  = "out.wav"
     rotate  = False
+    invert  = False
 
     if args.output:
         output = args.output
@@ -41,6 +43,8 @@ def parser():
         wavrate = args.sampling
     if args.rotate:
         rotate = True
+    if args.invert:
+        invert = True
 
     print('Input file: %s.' % args.INPUT)
     print('Frequency range: %d - %d.' % (minfreq, maxfreq))
@@ -48,12 +52,18 @@ def parser():
     print('Sampling rate: %d.' % wavrate)
     print('Rotate Image: %s.' % ('yes' if rotate else 'no'))
 
-    return (args.INPUT, output, minfreq, maxfreq, pxs, wavrate, rotate)
+    return (args.INPUT, output, minfreq, maxfreq, pxs, wavrate, rotate, invert)
 
-def convert(inpt, output, minfreq, maxfreq, pxs, wavrate, rotate):
+def convert(inpt, output, minfreq, maxfreq, pxs, wavrate, rotate, invert):
     img = Image.open(inpt).convert('L')
+
+    # rotate image if requested
     if rotate:
       img = img.rotate(90)
+
+    # invert image if requested
+    if invert:
+      img = ImageOps.invert(img)
 
     output = wave.open(output, 'w')
     output.setparams((1, 2, wavrate, 0, 'NONE', 'not compressed'))
