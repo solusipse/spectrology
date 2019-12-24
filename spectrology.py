@@ -71,7 +71,7 @@ def convert(inpt, output, minfreq, maxfreq, pxs, wavrate, rotate, invert):
     freqrange = maxfreq - minfreq
     interval = freqrange / img.size[1]
 
-    fpx = wavrate / pxs
+    fpx = wavrate // pxs
     data = array.array('h')
 
     tm = timeit.default_timer()
