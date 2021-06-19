@@ -99,7 +99,7 @@ def convert(inpt, output, minfreq, maxfreq, pxs, wavrate, rotate, invert):
         sys.stdout.write("Conversion progress: %d%%   \r" % (float(x) / img.size[0]*100) )
         sys.stdout.flush()
 
-    output.writeframes(data)
+    output.writeframes(data.tobytes())
     output.close()
 
     tms = timeit.default_timer()
