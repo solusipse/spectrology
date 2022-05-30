@@ -1,7 +1,8 @@
 # spectrology
-Images to audio files with corresponding spectrograms encoder.
+Скрипт для сокрытия изображения (BMP 24-bit) в спектрограмме звукового файла.  
+Главный репозиторий был заброшен и более не обновляется. В этом форке внесены необходимые правки для корректной работы скрипта.
 
-## Usage
+## Использование
 
 ```
 usage: spectrology.py [-h] [-r] [-o OUTPUT] [-b BOTTOM] [-t TOP] [-p PIXELS]
@@ -9,11 +10,11 @@ usage: spectrology.py [-h] [-r] [-o OUTPUT] [-b BOTTOM] [-t TOP] [-p PIXELS]
                       INPUT
 
 positional arguments:
-  INPUT                 Name of the image to be convected.
+  INPUT                 Название избражения, которое будет сокрыто.
 
 optional arguments:
-  -h, --help            show this help message and exit
-  -r, --rotate          Rotate image 90 degrees.
+  -h, --help            Показать это сообщение и выйти.
+  -r, --rotate          Повернуть изображение на 90 градусов.
   -o OUTPUT, --output OUTPUT
                         Name of the output wav file. Default value: out.wav).
   -b BOTTOM, --bottom BOTTOM
