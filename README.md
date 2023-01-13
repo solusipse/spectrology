@@ -1,37 +1,35 @@
-# spectrology
+# Spectrology
 Скрипт для сокрытия изображения (BMP 24-bit) в спектрограмме звукового файла.  
 Главный репозиторий был заброшен и более не обновляется. В этом форке внесены необходимые правки для корректной работы скрипта.
 
 ## Использование
 
 ```
-usage: spectrology.py [-h] [-r] [-o OUTPUT] [-b BOTTOM] [-t TOP] [-p PIXELS]
-                      [-s SAMPLING]
-                      INPUT
+использование: spectrology.py [-h] [-r] [-o OUTPUT] [-b BOTTOM] [-t TOP] [-p PIXELS] [-s SAMPLING] INPUT
 
-positional arguments:
+позиционные аргументы:
   INPUT                 Название избражения, которое будет сокрыто.
 
-optional arguments:
+необязательные аргументы:
   -h, --help            Показать это сообщение и выйти.
   -r, --rotate          Повернуть изображение на 90 градусов.
   -o OUTPUT, --output OUTPUT
-                        Name of the output wav file. Default value: out.wav).
+                        Название выходного WAV файла. По умолчанию: out.wav.
   -b BOTTOM, --bottom BOTTOM
-                        Bottom frequency range. Default value: 200.
-  -t TOP, --top TOP     Top frequency range. Default value: 20000.
+                        Нижнее значение диапазона частоты. По умолчанию: 200 Гц.
+  -t TOP, --top TOP     Высшее значение диапазона частоты. По умолчанию: 20000 Гц.
   -p PIXELS, --pixels PIXELS
-                        Pixels per second. Default value: 30.
+                        Пикселей за секунду. По умолчанию: 30 Пикселей.
   -s SAMPLING, --sampling SAMPLING
-                        Sampling rate. Default value: 44100.
+                        Частота дискретизации. По умолчанию: 44100 Гц.
 ```
 
 ```
-python spectrology.py test.bmp -b 13000 -t 19000
+python spectrology.py test.bmp --bottom 13000 --top 19000
 ```
 ![spectrogram](https://solusipse.net/blog/img/posts/audio-samples/7.png)
 
-For more informations on this techique, see this article: https://solusipse.net/blog/post/basic-methods-of-audio-steganography-spectrograms/.
+Для получения дополнительной информации об этой технике, см. [эту статью](https://solusipse.net/blog/post/basic-methods-of-audio-steganography-spectrograms/) (eng).
 
-## License
-See `LICENSE`.
+## Перевод и исправление
+### [Digit4lSh4d0w](https://github.com/Digit4lSh4d0w)
