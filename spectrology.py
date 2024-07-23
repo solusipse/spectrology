@@ -46,11 +46,11 @@ def parser():
     if args.invert:
         invert = True
 
-    print('Input file: %s.' % args.INPUT)
-    print('Frequency range: %d - %d.' % (minfreq, maxfreq))
-    print('Pixels per second: %d.' % pxs)
-    print('Sampling rate: %d.' % wavrate)
-    print('Rotate Image: %s.' % ('yes' if rotate else 'no'))
+    print(f'Input file: {args.INPUT}.')
+    print(f'Frequency range: {minfreq} - {maxfreq}.')
+    print(f'Pixels per second: {pxs}.')
+    print(f'Sampling rate: {wavrate}.')
+    print(f'Rotate Image: {"yes" if rotate else "no"}.')
 
     return (args.INPUT, output, minfreq, maxfreq, pxs, wavrate, rotate, invert)
 
@@ -59,11 +59,11 @@ def convert(inpt, output, minfreq, maxfreq, pxs, wavrate, rotate, invert):
 
     # rotate image if requested
     if rotate:
-      img = img.rotate(90)
+        img = img.rotate(90)
 
     # invert image if requested
     if invert:
-      img = ImageOps.invert(img)
+        img = ImageOps.invert(img)
 
     output = wave.open(output, 'w')
     output.setparams((1, 2, wavrate, 0, 'NONE', 'not compressed'))
@@ -92,20 +92,20 @@ def convert(inpt, output, minfreq, maxfreq, pxs, wavrate, rotate, invert):
                     data.insert(i + x * fpx, j[i])
                 except(OverflowError):
                     if j[i] > 0:
-                      data[i + x * fpx] = 32767
+                        data[i + x * fpx] = 32767
                     else:
-                      data[i + x * fpx] = -32768
+                        data[i + x * fpx] = -32768
 
-        sys.stdout.write("Conversion progress: %d%%   \r" % (float(x) / img.size[0]*100) )
+        sys.stdout.write(f"Conversion progress: {int(float(x) / img.size[0]*100)}%   \r")
         sys.stdout.flush()
 
-    output.writeframes(data.tostring())
+    output.writeframes(data.tobytes())
     output.close()
 
     tms = timeit.default_timer()
 
     print("Conversion progress: 100%")
-    print("Success. Completed in %d seconds." % int(tms-tm))
+    print(f"Success. Completed in {int(tms-tm)} seconds.")
 
 def genwave(frequency, amplitude, samples, samplerate):
     cycles = samples * frequency / samplerate
